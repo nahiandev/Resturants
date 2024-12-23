@@ -40,12 +40,7 @@ namespace Restaurants.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ResturantId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ResturantId");
 
                     b.ToTable("Dishes");
                 });
@@ -82,47 +77,58 @@ namespace Restaurants.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Resturants");
-                });
 
-            modelBuilder.Entity("Restaurants.Models.Domains.Dish", b =>
-                {
-                    b.HasOne("Restaurants.Models.Domains.Resturant", null)
-                        .WithMany("Dishes")
-                        .HasForeignKey("ResturantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Restaurants.Models.Domains.Resturant", b =>
-                {
-                    b.OwnsOne("Restaurants.Models.Domains.Address", "Address", b1 =>
+                    b.HasData(
+                        new
                         {
-                            b1.Property<int>("ResturantId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("ZipCode")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ResturantId");
-
-                            b1.ToTable("Resturants");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ResturantId");
+                            Id = 1,
+                            Category = "Italian",
+                            Description = "A cozy place for authentic Italian cuisine.",
+                            Email = "contact@italianbistro.com",
+                            HasDelivery = true,
+                            Name = "Italian Bistro",
+                            PhoneNumber = "123-456-7890"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "Japanese",
+                            Description = "Fresh and delicious sushi.",
+                            Email = "info@sushiworld.com",
+                            HasDelivery = false,
+                            Name = "Sushi World",
+                            PhoneNumber = "987-654-3210"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Mexican",
+                            Description = "Best tacos in town.",
+                            Email = "order@tacofiesta.com",
+                            HasDelivery = true,
+                            Name = "Taco Fiesta",
+                            PhoneNumber = "555-123-4567"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "American",
+                            Description = "Juicy burgers and crispy fries.",
+                            Email = "support@burgerhaven.com",
+                            HasDelivery = false,
+                            Name = "Burger Haven",
+                            PhoneNumber = "444-555-6666"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Indian",
+                            Description = "Authentic Indian curries.",
+                            Email = "contact@curryhouse.com",
+                            HasDelivery = true,
+                            Name = "Curry House",
+                            PhoneNumber = "333-222-1111"
                         });
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("Restaurants.Models.Domains.Resturant", b =>
-                {
-                    b.Navigation("Dishes");
                 });
 #pragma warning restore 612, 618
         }

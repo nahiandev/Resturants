@@ -1,12 +1,15 @@
 
 using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
+using Restaurants.DataSeeder.Implementations;
+using Restaurants.DataSeeder.Interfaces;
+
 
 namespace Restaurants
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +19,19 @@ namespace Restaurants
 
             builder.Services.AddControllers();
 
+            //builder.Services.AddScoped<IResturantSeeder, ResturantSeeder>();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var seeder = scope.ServiceProvider.GetRequiredService<IResturantSeeder>();
+            //    await seeder.SeedAsync();
+            //}
 
             if (app.Environment.IsDevelopment())
             {
@@ -34,13 +46,6 @@ namespace Restaurants
             app.MapControllers();
 
             app.Run();
-        }
-
-        private delegate int Trev(int x, int y);
-
-        private static void Hello()
-        {
-            var s = string.Empty;
         }
     }
 }
