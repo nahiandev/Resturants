@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Restaurants.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -28,6 +28,12 @@ namespace Restaurants.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        public IActionResult Save([FromQuery] int id)
+        {
+            return Ok(id * 2);
         }
     }
 }

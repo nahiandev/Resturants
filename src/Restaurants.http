@@ -1,6 +1,23 @@
-@Restaurants_HostAddress = http://localhost:5231
+@host = http://localhost
+@port = 5231
+@endpoint = weatherforecast
 
-GET {{Restaurants_HostAddress}}/weatherforecast/
+@Restaurants_HostAddress = {{host}}:{{port}}/api/{{endpoint}}
+
+GET {{Restaurants_HostAddress}}
 Accept: application/json
+ProjectUrl: {{$projectUrl}}
+Guid: {{$guid}}
+LocalDate: {{$datetime iso8601}}
+###
 
+POST {{Restaurants_HostAddress}}
+Content-Type: application/json
+Accept: application/json
+ProjectUrl: {{$projectUrl}}
+Guid: {{$guid}}
+LocalDate: {{$datetime iso8601}}
+{
+    "id": 23
+}
 ###
