@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Restaurants.DataAccessor;
+
 namespace Restaurants
 {
     public class Program
@@ -6,6 +9,10 @@ namespace Restaurants
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString = builder.Configuration.GetConnectionString("ResturantConnection");
+
+            builder.Services.AddDbContext<ResturantDbContext>(db => db.UseSqlServer(connectionString));
 
             builder.Services.AddControllers();
 
