@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
+using Restaurants.DataSeeder.Interfaces;
 using Restaurants.Models.Domains;
 
-namespace Restaurants.DataSeeder
+namespace Restaurants.DataSeeder.Implementations
 {
-    public class ResturantSeeder
+    public class ResturantSeeder : IResturantSeeder
     {
         private readonly ResturantDbContext _context;
 
