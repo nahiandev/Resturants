@@ -28,5 +28,12 @@ namespace Restaurants
 
             app.Run();
         }
+
+        private delegate int Trev(int x, int y);
+
+        private static void Hello()
+        {
+            var s = string.Empty;
+        }
     }
 }
