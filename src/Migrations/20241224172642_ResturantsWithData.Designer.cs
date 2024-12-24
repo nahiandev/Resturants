@@ -11,8 +11,8 @@ using Restaurants.DataAccessor;
 namespace Restaurants.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20241224100302_resturants")]
-    partial class resturants
+    [Migration("20241224172642_ResturantsWithData")]
+    partial class ResturantsWithData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,6 +107,56 @@ namespace Restaurants.Migrations
                             HasDelivery = true,
                             Name = "Curry House",
                             PhoneNumber = "333-222-1111"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = "Chinese",
+                            Description = "Delicious",
+                            Email = "donx@house.vox",
+                            HasDelivery = true,
+                            Name = "Peking Duck House",
+                            PhoneNumber = "666-777-8888"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = "Italian",
+                            Description = "Delicious",
+                            Email = "utral@hdg.co.in",
+                            HasDelivery = true,
+                            Name = "Pasta Palace",
+                            PhoneNumber = "666-777-8888"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = "Japanese",
+                            Description = "Delicious",
+                            Email = "serrc@olx.au",
+                            HasDelivery = true,
+                            Name = "Sushi Palace",
+                            PhoneNumber = "666-777-8888"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = "Mexican",
+                            Description = "Delicious",
+                            Email = "ducky@paant.kz",
+                            HasDelivery = true,
+                            Name = "Taco Palace",
+                            PhoneNumber = "666-777-8888"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = "American",
+                            Description = "Delicious",
+                            Email = "grave@hylux.co.uk",
+                            HasDelivery = true,
+                            Name = "Burger Palace",
+                            PhoneNumber = "666-777-8888"
                         });
                 });
 #pragma warning restore 612, 618

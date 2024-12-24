@@ -7,7 +7,7 @@
 namespace Restaurants.Migrations
 {
     /// <inheritdoc />
-    public partial class resturants : Migration
+    public partial class ResturantsWithData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,7 +39,12 @@ namespace Restaurants.Migrations
                     { 2, "Japanese", "Fresh and delicious sushi.", "info@sushiworld.com", false, "Sushi World", "987-654-3210" },
                     { 3, "Mexican", "Best tacos in town.", "order@tacofiesta.com", true, "Taco Fiesta", "555-123-4567" },
                     { 4, "American", "Juicy burgers and crispy fries.", "support@burgerhaven.com", false, "Burger Haven", "444-555-6666" },
-                    { 5, "Indian", "Authentic Indian curries.", "contact@curryhouse.com", true, "Curry House", "333-222-1111" }
+                    { 5, "Indian", "Authentic Indian curries.", "contact@curryhouse.com", true, "Curry House", "333-222-1111" },
+                    { 6, "Chinese", "Delicious", "donx@house.vox", true, "Peking Duck House", "666-777-8888" },
+                    { 7, "Italian", "Delicious", "utral@hdg.co.in", true, "Pasta Palace", "666-777-8888" },
+                    { 8, "Japanese", "Delicious", "serrc@olx.au", true, "Sushi Palace", "666-777-8888" },
+                    { 9, "Mexican", "Delicious", "ducky@paant.kz", true, "Taco Palace", "666-777-8888" },
+                    { 10, "American", "Delicious", "grave@hylux.co.uk", true, "Burger Palace", "666-777-8888" }
                 });
         }
 

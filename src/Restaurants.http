@@ -3,24 +3,3 @@
 GET {{Restaurants_HostAddress}}/api/resturant
 
 ###
-
-@id=18
-DELETE {{Restaurants_HostAddress}}/api/Resturant/{{id}}
-
-###
-@id=20
-GET {{Restaurants_HostAddress}}/api/Resturant/{{id}}
-
-###
-
-POST {{Restaurants_HostAddress}}/api/resturant
-Content-Type: application/json
-
-{
-  "name": "Hello",
-  "description": "string",
-  "category": "string",
-  "hasDelivery": true
-}
-
-###

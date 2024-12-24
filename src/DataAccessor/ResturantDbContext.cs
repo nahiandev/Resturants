@@ -36,7 +36,6 @@ namespace Restaurants.DataAccessor
                     HasDelivery = true,
                     PhoneNumber = "123-456-7890",
                     Email = "contact@italianbistro.com",
-
                 },
                 new ()
                 {
@@ -47,7 +46,6 @@ namespace Restaurants.DataAccessor
                     HasDelivery = false,
                     PhoneNumber = "987-654-3210",
                     Email = "info@sushiworld.com",
-
                 },
                 new ()
                 {
@@ -58,18 +56,16 @@ namespace Restaurants.DataAccessor
                     HasDelivery = true,
                     PhoneNumber = "555-123-4567",
                     Email = "order@tacofiesta.com",
-
                 },
                 new ()
                 {
-                    Id = 4,
+                   Id = 4,
                     Name = "Burger Haven",
                     Description = "Juicy burgers and crispy fries.",
                     Category = "American",
                     HasDelivery = false,
                     PhoneNumber = "444-555-6666",
                     Email = "support@burgerhaven.com",
-
                 },
                 new ()
                 {
@@ -80,7 +76,56 @@ namespace Restaurants.DataAccessor
                     HasDelivery = true,
                     PhoneNumber = "333-222-1111",
                     Email = "contact@curryhouse.com",
-
+                },
+                new ()
+                {
+                    Id = 6,
+                    Name = "Peking Duck House",
+                    Description = "Delicious",
+                    Category = "Chinese",
+                    HasDelivery = true,
+                    PhoneNumber = "666-777-8888",
+                    Email = "donx@house.vox"
+                },
+                new ()
+                {
+                    Id = 7,
+                    Name = "Pasta Palace",
+                    Description = "Delicious",
+                    Category = "Italian",
+                    HasDelivery = true,
+                    PhoneNumber = "666-777-8888",
+                    Email = "utral@hdg.co.in"
+                },
+                new ()
+                {
+                    Id = 8,
+                    Name = "Sushi Palace",
+                    Description = "Delicious",
+                    Category = "Japanese",
+                    HasDelivery = true,
+                    PhoneNumber = "666-777-8888",
+                    Email = "serrc@olx.au"
+                },
+                new ()
+                {
+                    Id = 9,
+                    Name = "Taco Palace",
+                    Description = "Delicious",
+                    Category = "Mexican",
+                    HasDelivery = true,
+                    PhoneNumber = "666-777-8888",
+                    Email = "ducky@paant.kz"
+                },
+                new ()
+                {
+                    Id = 10,
+                    Name = "Burger Palace",
+                    Description = "Delicious",
+                    Category = "American",
+                    HasDelivery = true,
+                    PhoneNumber = "666-777-8888",
+                    Email = "grave@hylux.co.uk"
                 }
             ];
 

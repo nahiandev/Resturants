@@ -59,7 +59,7 @@ namespace Restaurants.Controllers
 
             if (!success) return NotFound($"No Resturant found associated with Id: {id}");
 
-            return Ok($"Name: {name} associated with Id: {id} was deleted.");
+            return Ok($"Resturant Name: {name} associated with Id: {id} was deleted.");
         }
     }
 }

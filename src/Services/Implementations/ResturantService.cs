@@ -62,9 +62,9 @@ namespace Restaurants.Services.Implementations
 
             var resource_is_null = resource is null;
 
-            if (resource_is_null) return (false, string.Empty);
+            if (resource_is_null) return (!resource_is_null, string.Empty);
 
-            return (true, resource!.Name);
+            return (!resource_is_null, resource!.Name);
         }
     }
 }
