@@ -18,7 +18,6 @@ namespace Restaurants.Controllers
         [HttpGet]
         public async Task<IActionResult> GetResturants()
         {
-          
             var resturants = await _context.Resturants.ToListAsync();
             if (resturants.Count is 0)
             {
