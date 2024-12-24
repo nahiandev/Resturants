@@ -16,22 +16,18 @@ namespace Restaurants.Repository.Implementations
         public async Task<Resturant?> GetResturantByIdAsync(int id)
         {
             var resturant = await _context.Resturants.FirstOrDefaultAsync(r => r.Id == id);
-            if (resturant is null)
-            {
-                return await Task.FromResult<Resturant?>(null);
-            }
 
+            if (resturant is null) return await Task.FromResult<Resturant?>(null);
+            
             return resturant;
         }
 
         public async Task<List<Resturant>> GetResturantsAsync()
         {
             var resturants = await _context.Resturants.ToListAsync();
-            if (resturants.Count == 0)
-            {
-                return [];
-            }
 
+            if (resturants.Count == 0) return [];
+            
             return resturants;
         }
     }

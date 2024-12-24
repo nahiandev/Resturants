@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
+using Restaurants.Services.Implementations;
+using Restaurants.Services.Interfaces;
 
 
 namespace Restaurants
@@ -20,6 +22,7 @@ namespace Restaurants
             builder.Services.AddControllers();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
+            builder.Services.AddScoped<IResturantService, ResturantService>();
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

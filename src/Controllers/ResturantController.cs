@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Restaurants.Models.Domains;
-using Restaurants.Models.DTOs;
-using Restaurants.Repository.Interfaces;
+using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
 {
@@ -10,25 +7,21 @@ namespace Restaurants.Controllers
     [ApiController]
     public class ResturantController : ControllerBase
     {
-        private readonly IResturantRepository _repository;
+        private readonly IResturantService _service;
 
-        public ResturantController(IResturantRepository repository)
+        public ResturantController(IResturantService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetResturants()
         {
-            var resturants = await _repository.GetResturantsAsync();
-            if (resturants.Count is 0)
-            {
-                return NotFound();
-            }
+            var resturants = await _service.GetMappedResturantsAsync();
 
-            var mapped_resturants = resturants.Select(Mapper);
+            if (resturants.Count is 0) return NotFound();
 
-            return Ok(mapped_resturants);
+            return Ok(resturants);
         }
 
         [HttpGet]
@@ -36,25 +29,11 @@ namespace Restaurants.Controllers
 
         public async Task<IActionResult> GetResturantById([FromRoute] int id)
         {
-            var resturant = await _repository.GetResturantByIdAsync(id);
-            if (resturant is null)
-            {
-                return NotFound();
-            }
+            var resturant = await _service.GetMappedResturantByIdAsync(id);
 
-            var mapped_resturant = Mapper(resturant);
-            return Ok(mapped_resturant);
-        }
-
-        private static ResturantDTO Mapper(Resturant source)
-        {
-            return new()
-            {
-                Name = source.Name,
-                Description = source.Description,
-                Category = source.Category,
-                HasDelivery = source.HasDelivery
-            };
+            if (resturant is null) return NotFound();
+            
+            return Ok(resturant);
         }
     }
 }
