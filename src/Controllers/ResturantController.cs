@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Restaurants.DataAccessor;
-using Restaurants.Models.Domains;
 using Restaurants.Models.DTOs;
-using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
@@ -12,15 +9,10 @@ namespace Restaurants.Controllers
     public class ResturantController : ControllerBase
     {
         private readonly IResturantService _service;
-        private readonly ResturantDbContext _context;
-        private readonly IResturantRepository _repository;
-
-        public ResturantController(IResturantService service, 
-            ResturantDbContext context, IResturantRepository repository)
+    
+        public ResturantController(IResturantService service)
         {
             _service = service;
-            _context = context;
-            _repository = repository;
         }
 
         [HttpGet]
@@ -48,33 +40,18 @@ namespace Restaurants.Controllers
         [HttpPost]
         public async Task<IActionResult> AddResturant([FromBody] AddResturantDTO add_resturant_dto)
         {
-            var domain_resturant = Mapper(add_resturant_dto);
-
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
+        
             try
             {
-                await _repository.AddResturantAsync(domain_resturant);
+                var id = await _service.AddMappedResturantAsync(add_resturant_dto);
+
+                return CreatedAtAction(nameof(GetResturantById), new { id }, add_resturant_dto);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
-            return CreatedAtAction(nameof(GetResturantById), new { id = domain_resturant.Id }, domain_resturant);
-        }
-
-        private static Resturant Mapper(AddResturantDTO add_resturant_dto)
-        {
-            return new Resturant
-            {
-                Name = add_resturant_dto.Name,
-                Description = add_resturant_dto.Description,
-                Category = add_resturant_dto.Category,
-                HasDelivery = add_resturant_dto.HasDelivery,
-                PhoneNumber = add_resturant_dto.PhoneNumber,
-                Email = add_resturant_dto.Email
-            };
-        }
+        } 
     }
 }

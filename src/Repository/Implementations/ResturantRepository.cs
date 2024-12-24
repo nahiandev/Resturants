@@ -17,6 +17,7 @@ namespace Restaurants.Repository.Implementations
         public async Task AddResturantAsync(Resturant add_resturant)
         {
             await _context.Resturants.AddAsync(add_resturant);
+
             await _context.SaveChangesAsync();
         }
 

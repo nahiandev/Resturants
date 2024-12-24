@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Restaurants.Models.Domains;
-using Restaurants.Models.DTOs;
+﻿using Restaurants.Models.Domains;
 
 namespace Restaurants.Repository.Interfaces
 {

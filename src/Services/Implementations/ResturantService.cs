@@ -1,7 +1,7 @@
-﻿using Restaurants.Models.Domains;
-using Restaurants.Models.DTOs;
+﻿using Restaurants.Models.DTOs;
 using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Interfaces;
+using Restaurants.DomainMapper;
 
 namespace Restaurants.Services.Implementations
 {
@@ -19,7 +19,7 @@ namespace Restaurants.Services.Implementations
 
             if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
 
-            return Mapper(resturant);
+            return DataMapper.Instance.Mapper(resturant);
         }
 
         public async Task<List<ResturantDTO>> GetMappedResturantsAsync()
@@ -28,18 +28,16 @@ namespace Restaurants.Services.Implementations
 
             if (resturants.Count is 0) return [];
 
-            return [..resturants.Select(Mapper)];
+            return [..resturants.Select(DataMapper.Instance.Mapper)];
         }
 
-        private static ResturantDTO Mapper(Resturant source)
+        public async Task<int> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
         {
-            return new()
-            {
-                Name = source.Name,
-                Description = source.Description,
-                Category = source.Category,
-                HasDelivery = source.HasDelivery
-            };
+            var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
+
+            await _repository.AddResturantAsync(domain_resturant);
+
+            return domain_resturant.Id;
         }
     }
 }
