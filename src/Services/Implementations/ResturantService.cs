@@ -34,7 +34,7 @@ namespace Restaurants.Services.Implementations
             return [..resturants.Select(DataMapper.Instance.Mapper)];
         }
 
-        public async Task<ResturantDTO?> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
+        public async Task<(int id, ResturantDTO? resturants)> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
         {            
             var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
 
@@ -42,11 +42,11 @@ namespace Restaurants.Services.Implementations
             {
                 var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
 
-                return DataMapper.Instance.Mapper(saved_resturant!);
+                return (saved_resturant!.Id, DataMapper.Instance.Mapper(saved_resturant!));
             }
             catch (Exception)
             {
-                return await Task.FromResult<ResturantDTO?>(null);
+                return (-1, await Task.FromResult<ResturantDTO?>(null));
             }
         }
 

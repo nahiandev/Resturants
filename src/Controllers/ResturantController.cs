@@ -6,6 +6,8 @@ namespace Restaurants.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    // ModelState related errors are handled and exposed to consumer here
     public class ResturantController : ControllerBase
     {
         private readonly IResturantService _service;
@@ -42,11 +44,11 @@ namespace Restaurants.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             
-            var saved_resturant = await _service.AddMappedResturantAsync(add_resturant_dto);
+            var (id, saved_resturant) = await _service.AddMappedResturantAsync(add_resturant_dto);
 
             if (saved_resturant is null) return BadRequest();
 
-            return Created();
+            return CreatedAtAction(nameof(GetResturantById), new { id }, saved_resturant);
         }
 
         [HttpDelete]
