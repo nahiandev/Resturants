@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurants.DataAccessor;
 using Restaurants.Models.Domains;
+using Restaurants.Models.DTOs;
 using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
@@ -41,11 +42,30 @@ namespace Restaurants.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddResturant([FromBody] Resturant resturant)
+        public IActionResult AddResturant([FromBody] AddResturantDTO add_resturant_dto)
         {
-            _context.Resturants.Add(resturant);
+            var domain_resturant = Mapper(add_resturant_dto);
+
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            
+
+
+            _context.Resturants.Add(domain_resturant);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetResturantById), new { id = resturant.Id }, resturant);
+            return CreatedAtAction(nameof(GetResturantById), new { id = domain_resturant.Id }, domain_resturant);
+        }
+
+        private static Resturant Mapper(AddResturantDTO add_resturant_dto)
+        {
+            return new Resturant
+            {
+                Name = add_resturant_dto.Name,
+                Description = add_resturant_dto.Description,
+                Category = add_resturant_dto.Category,
+                HasDelivery = add_resturant_dto.HasDelivery,
+                PhoneNumber = add_resturant_dto.PhoneNumber,
+                Email = add_resturant_dto.Email
+            };
         }
     }
 }
