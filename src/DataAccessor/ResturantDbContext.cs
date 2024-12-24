@@ -16,33 +16,8 @@ namespace Restaurants.DataAccessor
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            
             modelBuilder.Entity<Resturant>().HasData(GetResturants());
-            
-
-            // Seed data for Dishes
-            //modelBuilder.Entity<Dish>().HasData(
-            //    new Dish
-            //    {
-            //        Id = 1,
-            //        Name = "Big Mac",
-            //        Description = "Tasty",
-            //        Price = 5.99m,
-                
-            //    },
-            //    new Dish
-            //    {
-            //        Id = 2,
-            //        Name = "McNuggets",
-            //        Description = "Tasty",
-            //        Price = 4.99m,
-                   
-            //    }
-            //);
         }
-
-
         private IEnumerable<Resturant> GetResturants()
         {
             List<Resturant> resturants = new List<Resturant>

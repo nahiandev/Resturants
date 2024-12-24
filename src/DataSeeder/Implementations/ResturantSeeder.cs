@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Restaurants.DataAccessor;
-using Restaurants.DataSeeder.Interfaces;
-using Restaurants.Models.Domains;
+﻿using Restaurants.DataAccessor;
 
 namespace Restaurants.DataSeeder.Implementations
 {
@@ -39,7 +36,5 @@ namespace Restaurants.DataSeeder.Implementations
         //        }
         //    }
         //}
-
-        
     }
 }

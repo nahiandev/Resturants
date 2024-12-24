@@ -11,8 +11,8 @@ using Restaurants.DataAccessor;
 namespace Restaurants.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20241223190223_Data")]
-    partial class Data
+    [Migration("20241224074013_HDHDSW")]
+    partial class HDHDSW
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

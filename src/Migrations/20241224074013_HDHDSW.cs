@@ -7,7 +7,7 @@
 namespace Restaurants.Migrations
 {
     /// <inheritdoc />
-    public partial class Data : Migration
+    public partial class HDHDSW : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
