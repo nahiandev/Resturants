@@ -13,6 +13,13 @@ namespace Restaurants.Repository.Implementations
         {
             _context = context;
         }
+
+        public async Task AddResturantAsync(Resturant add_resturant)
+        {
+            await _context.Resturants.AddAsync(add_resturant);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<Resturant?> GetResturantByIdAsync(int id)
         {
             var resturant = await _context.Resturants.FirstOrDefaultAsync(r => r.Id == id);

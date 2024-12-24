@@ -2,6 +2,7 @@
 using Restaurants.DataAccessor;
 using Restaurants.Models.Domains;
 using Restaurants.Models.DTOs;
+using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
@@ -12,11 +13,14 @@ namespace Restaurants.Controllers
     {
         private readonly IResturantService _service;
         private readonly ResturantDbContext _context;
+        private readonly IResturantRepository _repository;
 
-        public ResturantController(IResturantService service, ResturantDbContext context)
+        public ResturantController(IResturantService service, 
+            ResturantDbContext context, IResturantRepository repository)
         {
             _service = service;
             _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -42,16 +46,21 @@ namespace Restaurants.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddResturant([FromBody] AddResturantDTO add_resturant_dto)
+        public async Task<IActionResult> AddResturant([FromBody] AddResturantDTO add_resturant_dto)
         {
             var domain_resturant = Mapper(add_resturant_dto);
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            
 
+            try
+            {
+                await _repository.AddResturantAsync(domain_resturant);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
-            _context.Resturants.Add(domain_resturant);
-            _context.SaveChanges();
             return CreatedAtAction(nameof(GetResturantById), new { id = domain_resturant.Id }, domain_resturant);
         }
 

@@ -1,4 +1,6 @@
-﻿using Restaurants.Models.Domains;
+﻿using Microsoft.AspNetCore.Mvc;
+using Restaurants.Models.Domains;
+using Restaurants.Models.DTOs;
 
 namespace Restaurants.Repository.Interfaces
 {
@@ -6,6 +8,7 @@ namespace Restaurants.Repository.Interfaces
     {
         Task<List<Resturant>> GetResturantsAsync();
         Task<Resturant?> GetResturantByIdAsync(int id);
+        Task AddResturantAsync(Resturant add_resturant);
 
     }
 }
