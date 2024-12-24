@@ -1,14 +1,10 @@
-﻿namespace Restaurants.Models.Domains
+﻿namespace Restaurants.Models.DTOs
 {
-    public class Resturant
+    public class ResturantDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
         public bool HasDelivery { get; set; }
-
-        public string? PhoneNumber { get; set; }
-        public string? Email { get; set; }
     }
 }
