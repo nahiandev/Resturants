@@ -32,10 +32,8 @@ namespace Restaurants.Services.Implementations
         }
 
         public async Task<ResturantDTO?> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
-        {
+        {            
             var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
-
-            if (domain_resturant is null) Task.FromResult<ResturantDTO>(null);
 
             var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
 

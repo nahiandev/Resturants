@@ -46,7 +46,7 @@ namespace Restaurants.Controllers
 
             if (saved_resturant is null) return BadRequest();
 
-            return Ok(saved_resturant);
+            return Created();
         }
 
         [HttpDelete]
