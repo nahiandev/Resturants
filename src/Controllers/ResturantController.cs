@@ -26,7 +26,7 @@ namespace Restaurants.Controllers
                 return NotFound();
             }
 
-            var mapped_resturants = resturants.Select(r => Mapper(r));
+            var mapped_resturants = resturants.Select(Mapper);
 
             return Ok(mapped_resturants);
         }
