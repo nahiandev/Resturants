@@ -23,11 +23,11 @@ namespace Restaurants.DataAccessor
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Resturant>().HasData(GetResturants());
         }
-        private IEnumerable<Resturant> GetResturants()
+        private static IEnumerable<Resturant> GetResturants()
         {
-            List<Resturant> resturants = new List<Resturant>
-            {
-                new Resturant
+            List<Resturant> resturants =
+            [
+                new ()
                 {
                     Id = 1,
                     Name = "Italian Bistro",
@@ -38,7 +38,7 @@ namespace Restaurants.DataAccessor
                     Email = "contact@italianbistro.com",
 
                 },
-                new Resturant
+                new ()
                 {
                     Id = 2,
                     Name = "Sushi World",
@@ -49,7 +49,7 @@ namespace Restaurants.DataAccessor
                     Email = "info@sushiworld.com",
 
                 },
-                new Resturant
+                new ()
                 {
                     Id = 3,
                     Name = "Taco Fiesta",
@@ -60,7 +60,7 @@ namespace Restaurants.DataAccessor
                     Email = "order@tacofiesta.com",
 
                 },
-                new Resturant
+                new ()
                 {
                     Id = 4,
                     Name = "Burger Haven",
@@ -71,7 +71,7 @@ namespace Restaurants.DataAccessor
                     Email = "support@burgerhaven.com",
 
                 },
-                new Resturant
+                new ()
                 {
                     Id = 5,
                     Name = "Curry House",
@@ -82,7 +82,7 @@ namespace Restaurants.DataAccessor
                     Email = "contact@curryhouse.com",
 
                 }
-            };
+            ];
 
             return resturants;
         }

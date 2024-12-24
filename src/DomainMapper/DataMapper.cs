@@ -30,6 +30,5 @@ namespace Restaurants.DomainMapper
             PhoneNumber = add_resturant_dto.PhoneNumber,
             Email = add_resturant_dto.Email
         };
-        
     }
 }
