@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
+using Restaurants.Models.Domains;
+using Restaurants.Repository.Interfaces;
 
 namespace Restaurants.Controllers
 {
@@ -8,17 +10,17 @@ namespace Restaurants.Controllers
     [ApiController]
     public class ResturantController : ControllerBase
     {
-        private readonly ResturantDbContext _context;
-       
-        public ResturantController(ResturantDbContext context)
+        private readonly IResturantRepository _repository;
+
+        public ResturantController(IResturantRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetResturants()
         {
-            var resturants = await _context.Resturants.ToListAsync();
+            var resturants = await _repository.GetResturantsAsync();
             if (resturants.Count is 0)
             {
                 return NotFound();
@@ -26,6 +28,17 @@ namespace Restaurants.Controllers
             return Ok(resturants);
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
 
+        public async Task<IActionResult> GetResturantById([FromRoute] int id)
+        {
+            var resturant = await _repository.GetResturantByIdAsync(id);
+            if (resturant is null)
+            {
+                return NotFound();
+            }
+            return Ok(resturant);
+        }
     }
 }

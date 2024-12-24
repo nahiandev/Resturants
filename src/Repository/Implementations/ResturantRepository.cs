@@ -25,7 +25,7 @@ namespace Restaurants.Repository.Implementations
             return resturant;
         }
 
-        public async Task<List<Resturant>?> GetResturantsAsync()
+        public async Task<List<Resturant>> GetResturantsAsync()
         {
             var resturants = await _context.Resturants.ToListAsync();
             if (resturants.Count == 0)
