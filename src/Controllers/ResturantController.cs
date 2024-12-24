@@ -22,7 +22,7 @@ namespace Restaurants.Controllers
         {
             var resturants = await _service.GetMappedResturantsAsync();
 
-            if (resturants.Count is 0) return NotFound();
+            if (resturants.Count is 0) return NotFound("OOPS! This place is little empty.");
 
             return Ok(resturants);
         }
@@ -34,8 +34,8 @@ namespace Restaurants.Controllers
         {
             var resturant = await _service.GetMappedResturantByIdAsync(id);
 
-            if (resturant is null) return NotFound();
-            
+            if (resturant is null) return NotFound($"No Resturant found associated with Id: {id}");
+
             return Ok(resturant);
         }
 
