@@ -7,6 +7,8 @@ namespace Restaurants.Repository.Implementations
 {
     public class ResturantRepository : IResturantRepository
     {
+        // Purely responsible for data access
+
         private readonly ResturantDbContext _context;
 
         public ResturantRepository(ResturantDbContext context)
@@ -18,15 +20,9 @@ namespace Restaurants.Repository.Implementations
         {
             await _context.Resturants.AddAsync(add_resturant);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-                return add_resturant;
-            } 
-            catch
-            {
-                return await Task.FromResult<Resturant>(null);
-            }
+            await _context.SaveChangesAsync();
+
+            return add_resturant;
         }
 
         public async Task<Resturant?> DeleteResturantAsync(int id)

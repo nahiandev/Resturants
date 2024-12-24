@@ -7,6 +7,9 @@ namespace Restaurants.Services.Implementations
 {
     public class ResturantService : IResturantService
     {
+        // Purely responsible for business logic
+        // Mapping errors are handled here
+
         private readonly IResturantRepository _repository;
 
         public ResturantService(IResturantRepository repository)
@@ -35,9 +38,16 @@ namespace Restaurants.Services.Implementations
         {            
             var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
 
-            var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
+            try
+            {
+                var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
 
-            return DataMapper.Instance.Mapper(saved_resturant!);
+                return DataMapper.Instance.Mapper(saved_resturant!);
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult<ResturantDTO?>(null);
+            }
         }
 
         public async Task<bool> DeleteMappedResturantAsync(int id)
