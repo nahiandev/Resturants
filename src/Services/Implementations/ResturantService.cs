@@ -31,13 +31,22 @@ namespace Restaurants.Services.Implementations
             return [..resturants.Select(DataMapper.Instance.Mapper)];
         }
 
-        public async Task<int> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
+        public async Task<ResturantDTO?> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
         {
             var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
 
-            await _repository.AddResturantAsync(domain_resturant);
+            if (domain_resturant is null) Task.FromResult<ResturantDTO>(null);
 
-            return domain_resturant.Id;
+            var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
+
+            return DataMapper.Instance.Mapper(saved_resturant!);
+        }
+
+        public async Task<bool> DeleteMappedResturantAsync(int id)
+        {
+            var resource = await _repository.DeleteResturantAsync(id);
+
+            return resource is not null;
         }
     }
 }

@@ -41,17 +41,23 @@ namespace Restaurants.Controllers
         public async Task<IActionResult> AddResturant([FromBody] AddResturantDTO add_resturant_dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-        
-            try
-            {
-                var id = await _service.AddMappedResturantAsync(add_resturant_dto);
+            
+            var saved_resturant = await _service.AddMappedResturantAsync(add_resturant_dto);
 
-                return CreatedAtAction(nameof(GetResturantById), new { id }, add_resturant_dto);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        } 
+            if (saved_resturant is null) return BadRequest();
+
+            return Ok(saved_resturant);
+        }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteResturant([FromRoute] int id)
+        {
+            var success = await _service.DeleteMappedResturantAsync(id);
+
+            if (!success) return NotFound();
+
+            return Ok();
+        }
     }
 }

@@ -14,11 +14,32 @@ namespace Restaurants.Repository.Implementations
             _context = context;
         }
 
-        public async Task AddResturantAsync(Resturant add_resturant)
+        public async Task<Resturant?> AddResturantAsync(Resturant add_resturant)
         {
             await _context.Resturants.AddAsync(add_resturant);
 
+            try
+            {
+                await _context.SaveChangesAsync();
+                return add_resturant;
+            } 
+            catch
+            {
+                return await Task.FromResult<Resturant>(null);
+            }
+        }
+
+        public async Task<Resturant?> DeleteResturantAsync(int id)
+        {
+            var resturant = _context.Resturants.FirstOrDefault(r => r.Id == id);
+            
+            if (resturant is null) return await Task.FromResult<Resturant?>(null);
+
+            _context.Resturants.Remove(resturant);
+
             await _context.SaveChangesAsync();
+
+            return resturant;
         }
 
         public async Task<Resturant?> GetResturantByIdAsync(int id)
