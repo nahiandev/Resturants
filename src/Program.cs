@@ -1,10 +1,12 @@
-
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Implementations;
 using Restaurants.Services.Interfaces;
+using Restaurants.Validator;
 
 
 namespace Restaurants
@@ -20,6 +22,10 @@ namespace Restaurants
             builder.Services.AddDbContext<ResturantDbContext>(db => db.UseSqlServer(connectionString));
 
             builder.Services.AddControllers();
+
+            // Register FluentValidation
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<AddResturantDTOValidator>();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
             builder.Services.AddScoped<IResturantService, ResturantService>();
