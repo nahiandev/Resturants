@@ -50,11 +50,15 @@ namespace Restaurants.Services.Implementations
             }
         }
 
-        public async Task<bool> DeleteMappedResturantAsync(int id)
+        public async Task<(bool success, string? name)> DeleteMappedResturantAsync(int id)
         {
             var resource = await _repository.DeleteResturantAsync(id);
 
-            return resource is not null;
+            var resource_is_not_null = resource is not null;
+
+            if (resource_is_not_null) return (true, resource!.Name);
+
+            return (false, string.Empty);
         }
     }
 }

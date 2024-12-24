@@ -7,6 +7,6 @@ namespace Restaurants.Services.Interfaces
         Task<List<ResturantDTO>> GetMappedResturantsAsync();
         Task<ResturantDTO?> GetMappedResturantByIdAsync(int id);
         Task<(int id, ResturantDTO? resturants)> AddMappedResturantAsync(AddResturantDTO add_resturant_dto);
-        Task<bool> DeleteMappedResturantAsync(int id);
+        Task<(bool success, string? name)> DeleteMappedResturantAsync(int id);
     }
 }

@@ -55,11 +55,11 @@ namespace Restaurants.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteResturant([FromRoute] int id)
         {
-            var success = await _service.DeleteMappedResturantAsync(id);
+            var (success, name) = await _service.DeleteMappedResturantAsync(id);
 
-            if (!success) return NotFound();
+            if (!success) return NotFound($"No Resturant found associated with Id: {id}");
 
-            return Ok();
+            return Ok($"Name: {name} associated with Id: {id} was deleted.");
         }
     }
 }
