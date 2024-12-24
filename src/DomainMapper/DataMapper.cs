@@ -5,38 +5,31 @@ namespace Restaurants.DomainMapper
 {
     public sealed class DataMapper
     {
-        private static readonly DataMapper _instance = new DataMapper();
+        private static readonly DataMapper _instance = new();
 
-        // Private constructor to prevent instantiation
         private DataMapper()
         {
         }
 
-        // Public static property to access the singleton instance
         public static DataMapper Instance => _instance;
 
-        public ResturantDTO Mapper(Resturant source)
+        public ResturantDTO Mapper(Resturant source) => new()
         {
-            return new()
-            {
-                Name = source.Name,
-                Description = source.Description,
-                Category = source.Category,
-                HasDelivery = source.HasDelivery
-            };
-        }
+            Name = source.Name,
+            Description = source.Description,
+            Category = source.Category,
+            HasDelivery = source.HasDelivery
+        };
+        
 
-        public Resturant Mapper(AddResturantDTO add_resturant_dto)
+        public Resturant Mapper(AddResturantDTO add_resturant_dto) => new()
         {
-            return new()
-            {
-                Name = add_resturant_dto.Name,
-                Description = add_resturant_dto.Description,
-                Category = add_resturant_dto.Category,
-                HasDelivery = add_resturant_dto.HasDelivery,
-                PhoneNumber = add_resturant_dto.PhoneNumber,
-                Email = add_resturant_dto.Email
-            };
-        }
+            Name = add_resturant_dto.Name,
+            Description = add_resturant_dto.Description,
+            Category = add_resturant_dto.Category,
+            PhoneNumber = add_resturant_dto.PhoneNumber,
+            Email = add_resturant_dto.Email
+        };
+        
     }
 }
