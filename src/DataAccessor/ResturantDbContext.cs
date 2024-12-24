@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Restaurants.Models.Domains;
 
 namespace Restaurants.DataAccessor
@@ -10,8 +11,13 @@ namespace Restaurants.DataAccessor
         }
 
         public DbSet<Resturant> Resturants { get; set; }
-        
-        public DbSet<Dish> Dishes { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore());
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

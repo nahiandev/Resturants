@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurants.DataAccessor;
+using Restaurants.Models.Domains;
 using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
@@ -8,10 +10,12 @@ namespace Restaurants.Controllers
     public class ResturantController : ControllerBase
     {
         private readonly IResturantService _service;
+        private readonly ResturantDbContext _context;
 
-        public ResturantController(IResturantService service)
+        public ResturantController(IResturantService service, ResturantDbContext context)
         {
             _service = service;
+            _context = context;
         }
 
         [HttpGet]
@@ -34,6 +38,14 @@ namespace Restaurants.Controllers
             if (resturant is null) return NotFound();
             
             return Ok(resturant);
+        }
+
+        [HttpPost]
+        public IActionResult AddResturant([FromBody] Resturant resturant)
+        {
+            _context.Resturants.Add(resturant);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetResturantById), new { id = resturant.Id }, resturant);
         }
     }
 }

@@ -11,8 +11,8 @@ using Restaurants.DataAccessor;
 namespace Restaurants.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20241224074013_HDHDSW")]
-    partial class HDHDSW
+    [Migration("20241224100302_resturants")]
+    partial class resturants
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,30 +23,6 @@ namespace Restaurants.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Restaurants.Models.Domains.Dish", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dishes");
-                });
 
             modelBuilder.Entity("Restaurants.Models.Domains.Resturant", b =>
                 {
