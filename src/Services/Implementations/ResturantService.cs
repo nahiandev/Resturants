@@ -54,11 +54,17 @@ namespace Restaurants.Services.Implementations
         {
             var resource = await _repository.DeleteResturantAsync(id);
 
-            var resource_is_not_null = resource is not null;
+            //var resource_is_not_null = resource is not null;
 
-            if (resource_is_not_null) return (true, resource!.Name);
+            //if (resource_is_not_null) return (true, resource!.Name);
 
-            return (false, string.Empty);
+            //return (false, string.Empty);
+
+            var resource_is_null = resource is null;
+
+            if (resource_is_null) return (false, string.Empty);
+
+            return (true, resource!.Name);
         }
     }
 }
