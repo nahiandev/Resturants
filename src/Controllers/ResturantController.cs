@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Restaurants.DataAccessor;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Restaurants.Models.Domains;
+using Restaurants.Models.DTOs;
 using Restaurants.Repository.Interfaces;
 
 namespace Restaurants.Controllers
@@ -25,7 +25,10 @@ namespace Restaurants.Controllers
             {
                 return NotFound();
             }
-            return Ok(resturants);
+
+            var mapped_resturants = resturants.Select(r => Mapper(r));
+
+            return Ok(mapped_resturants);
         }
 
         [HttpGet]
@@ -38,7 +41,20 @@ namespace Restaurants.Controllers
             {
                 return NotFound();
             }
-            return Ok(resturant);
+
+            var mapped_resturant = Mapper(resturant);
+            return Ok(mapped_resturant);
+        }
+
+        private static ResturantDTO Mapper(Resturant source)
+        {
+            return new()
+            {
+                Name = source.Name,
+                Description = source.Description,
+                Category = source.Category,
+                HasDelivery = source.HasDelivery
+            };
         }
     }
 }

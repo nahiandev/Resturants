@@ -2,7 +2,6 @@
 using Restaurants.DataAccessor;
 using Restaurants.Models.Domains;
 using Restaurants.Repository.Interfaces;
-using System.Threading.Tasks;
 
 namespace Restaurants.Repository.Implementations
 {
