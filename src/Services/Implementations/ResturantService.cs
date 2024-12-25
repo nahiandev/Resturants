@@ -34,7 +34,7 @@ namespace Restaurants.Services.Implementations
             return [..resturants.Select(DataMapper.Instance.Mapper)];
         }
 
-        public async Task<(int id, ResturantDTO? resturant, bool modified)> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
+        public async Task<(int id, ResturantDTO? resturant)> AddMappedResturantAsync(AddResturantDTO add_resturant_dto)
         {
             var domain_resturant = DataMapper.Instance.Mapper(add_resturant_dto);
 
@@ -42,23 +42,17 @@ namespace Restaurants.Services.Implementations
             {
                 var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
 
-                return (saved_resturant.Id, DataMapper.Instance.Mapper(saved_resturant), false);
+                return (saved_resturant.Id, DataMapper.Instance.Mapper(saved_resturant));
             }
             catch (Exception)
             {
-                return (-1, await Task.FromResult<ResturantDTO?>(null), false);
+                return (-1, await Task.FromResult<ResturantDTO?>(null));
             }
         }
 
         public async Task<(bool success, string? name)> DeleteMappedResturantAsync(int id)
         {
             var resource = await _repository.DeleteResturantAsync(id);
-
-            //var resource_is_not_null = resource is not null;
-
-            //if (resource_is_not_null) return (true, resource!.Name);
-
-            //return (false, string.Empty);
 
             var resource_is_null = resource is null;
 
