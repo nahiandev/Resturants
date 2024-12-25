@@ -15,11 +15,19 @@ namespace Restaurants.Actions.Queries.GetResturants
         }
         public async Task<IEnumerable<ResturantDTO>> Handle(GetResturantsQuery request, CancellationToken cancellationToken)
         {
-            var resturants = await _repository.GetResturantsAsync();
+            try
+            {
+                var resturants = await _repository.GetResturantsAsync();
 
-            if (resturants.Count is 0) return [];
+                if (resturants.Count is 0) return [];
 
-            return [.. resturants.Select(DataMapper.Instance.Mapper)];
+                return [.. resturants.Select(DataMapper.Instance.Mapper)];
+            }
+            catch (Exception ex)
+            {
+                // Log exception
+                throw;
+            }
         }
     }
 }

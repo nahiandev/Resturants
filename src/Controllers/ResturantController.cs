@@ -60,7 +60,7 @@ namespace Restaurants.Controllers
         {
             var success = await _mediator.Send(new DeleteResturantCommand(id));
 
-            if (!success) return NotFound($"No Resturant found associated with Id: {id}");
+            if (!success) return BadRequest($"No Resturant found associated with Id: {id}");
 
             return Ok($"Resturant associated with Id: {id} was deleted.");
         }

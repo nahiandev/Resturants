@@ -18,11 +18,13 @@ namespace Restaurants.Actions.Commands.AddResturant
             try
             {
                 var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
+
                 return saved_resturant.Id;
             }
             catch (Exception e)
             {
-                return -1;
+                // Log error
+                throw;
             }
         }
     }

@@ -15,11 +15,19 @@ namespace Restaurants.Actions.Queries.GetResturantById
         }
         public async Task<ResturantDTO?> Handle(GetResturantByIdQuery request, CancellationToken cancellationToken)
         {
-            var resturant = await _repository.GetResturantByIdAsync(request.Id);
+            try
+            {
+                var resturant = await _repository.GetResturantByIdAsync(request.Id);
 
-            if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
+                if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
 
-            return DataMapper.Instance.Mapper(resturant);
+                return DataMapper.Instance.Mapper(resturant);
+            }
+            catch (Exception ex)
+            {
+                // Log exception
+                throw;
+            }
         }
     }
 }
