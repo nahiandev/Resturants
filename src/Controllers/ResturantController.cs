@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Restaurants.Coomands.AddResturant;
 using Restaurants.Models.DTOs;
 using Restaurants.Services.Interfaces;
 
@@ -11,10 +13,12 @@ namespace Restaurants.Controllers
     public class ResturantController : ControllerBase
     {
         private readonly IResturantService _service;
-    
-        public ResturantController(IResturantService service)
+        private readonly IMediator _mediator;
+
+        public ResturantController(IResturantService service, IMediator mediator)
         {
             _service = service;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -40,15 +44,17 @@ namespace Restaurants.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddResturant([FromBody] AddResturantDTO add_resturant_dto)
+        public async Task<IActionResult> AddResturant([FromBody] AddResturantCommand command)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            
-            var (id, saved_resturant) = await _service.AddMappedResturantAsync(add_resturant_dto);
 
-            if (saved_resturant is null) return BadRequest("Recored not saved!");
+            var id = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetResturantById), new { id }, saved_resturant);
+            // var (id, saved_resturant) = await _service.AddMappedResturantAsync(add_resturant_dto);
+
+            // if (saved_resturant is null) return BadRequest("Recored not saved!");
+
+            return CreatedAtAction(nameof(GetResturantById), new { id }, command);
         }
 
         [HttpDelete]

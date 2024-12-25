@@ -1,6 +1,8 @@
-﻿namespace Restaurants.Models.DTOs
+﻿using MediatR;
+
+namespace Restaurants.Coomands.AddResturant
 {
-    public class AddResturantDTO
+    public class AddResturantCommand : IRequest<int>
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -1,4 +1,5 @@
-﻿using Restaurants.Models.Domains;
+﻿using Restaurants.Coomands.AddResturant;
+using Restaurants.Models.Domains;
 using Restaurants.Models.DTOs;
 
 namespace Restaurants.DomainMapper
@@ -31,6 +32,15 @@ namespace Restaurants.DomainMapper
             Category = add_resturant_dto.Category,
             PhoneNumber = add_resturant_dto.PhoneNumber,
             Email = add_resturant_dto.Email
+        };
+        
+        public Resturant Mapper(AddResturantCommand add_resturant_command) => new()
+        {
+            Name = add_resturant_command.Name,
+            Description = add_resturant_command.Description,
+            Category = add_resturant_command.Category,
+            PhoneNumber = add_resturant_command.PhoneNumber,
+            Email = add_resturant_command.Email
         };
     }
 }

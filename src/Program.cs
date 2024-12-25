@@ -6,6 +6,7 @@ using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Implementations;
 using Restaurants.Services.Interfaces;
+using System.Reflection;
 
 
 namespace Restaurants
@@ -26,6 +27,9 @@ namespace Restaurants
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
             builder.Services.AddScoped<IResturantService, ResturantService>();
+
+            // Register MediatR and scan for handlers in the current assembly
+            builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
