@@ -21,7 +21,7 @@ namespace Restaurants.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Restaurants.Models.Domains.Resturant", b =>
+            modelBuilder.Entity("Restaurants.Domains.Resturant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

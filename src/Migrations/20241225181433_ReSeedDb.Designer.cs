@@ -11,8 +11,8 @@ using Restaurants.DataAccessor;
 namespace Restaurants.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20241224172642_ResturantsWithData")]
-    partial class ResturantsWithData
+    [Migration("20241225181433_ReSeedDb")]
+    partial class ReSeedDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Restaurants.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Restaurants.Models.Domains.Resturant", b =>
+            modelBuilder.Entity("Restaurants.Domains.Resturant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

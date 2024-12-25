@@ -7,7 +7,7 @@
 namespace Restaurants.Migrations
 {
     /// <inheritdoc />
-    public partial class ResturantsWithData : Migration
+    public partial class ReSeedDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
