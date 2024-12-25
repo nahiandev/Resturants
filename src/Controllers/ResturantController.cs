@@ -37,7 +37,7 @@ namespace Restaurants.Controllers
 
         public async Task<IActionResult> GetResturantById([FromRoute] int id)
         {
-            var resturant = await _mediator.Send(new GetResturantByIdQuery { Id = id });
+            var resturant = await _mediator.Send(new GetResturantByIdQuery(id));
 
             if (resturant is null) return NotFound($"No Resturant found associated with Id: {id}");
 
