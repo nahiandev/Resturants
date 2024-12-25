@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Restaurants.Models.DTOs
+﻿namespace Restaurants.Models.DTOs
 {
     public class AddResturantDTO
     {

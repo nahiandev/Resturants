@@ -6,7 +6,6 @@ using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Implementations;
 using Restaurants.Services.Interfaces;
-using Restaurants.Validator;
 
 
 namespace Restaurants
@@ -20,10 +19,8 @@ namespace Restaurants
             var connectionString = builder.Configuration.GetConnectionString("ResturantConnection");
 
             builder.Services.AddDbContext<ResturantDbContext>(db => db.UseSqlServer(connectionString));
-
             builder.Services.AddControllers();
 
-            // Register FluentValidation
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<AddResturantDTOValidator>();
 
@@ -42,11 +39,8 @@ namespace Restaurants
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }

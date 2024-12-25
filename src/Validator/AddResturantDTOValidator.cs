@@ -1,28 +1,37 @@
 ﻿using FluentValidation;
+using FluentValidation.Validators;
+using Restaurants.DataAccessor;
 using Restaurants.Models.DTOs;
 
-namespace Restaurants.Validator
+public class AddResturantDTOValidator : AbstractValidator<AddResturantDTO>
 {
-    public class AddResturantDTOValidator : AbstractValidator<AddResturantDTO>
+    private readonly ResturantDbContext _context;
+
+    public AddResturantDTOValidator(ResturantDbContext context)
     {
-        public AddResturantDTOValidator()
-        {
-            RuleFor(r => r.Name)
-                .NotEmpty().MinimumLength(3).
-                MaximumLength(50);
+        _context = context;
 
-            RuleFor(r => r.Description)
-                .NotEmpty().MaximumLength(300);
+        RuleFor(r => r.Name)
+            .NotEmpty().MinimumLength(3)
+            .MaximumLength(50);
 
-            RuleFor(r => r.Category)
-                .NotEmpty().MaximumLength(10);
+        RuleFor(r => r.Description)
+            .NotEmpty().MaximumLength(300);
 
-            RuleFor(r => r.HasDelivery).NotNull()
-                .Must(value => value == true || value == false)
-                .WithMessage("Must be a boolean value.");
+        RuleFor(r => r.Category)
+            .NotEmpty().MaximumLength(10);
 
-            RuleFor(r => r.Email).NotEmpty()
-                .EmailAddress();
-        }
+        RuleFor(r => r.HasDelivery).NotNull()
+            .Must(value => value == true || value == false)
+            .WithMessage("Must be a boolean value.");
+
+        RuleFor(r => r.Email)
+            .NotEmpty()
+            .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
+            .Must(IsMailUnique)
+            .WithMessage("Email address must be unique.");
     }
+
+    private bool IsMailUnique(string email) => !_context.Resturants.Any(r => r.Email == email);
+
 }
