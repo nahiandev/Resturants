@@ -2,7 +2,7 @@
 using FluentValidation.Validators;
 using Restaurants.DataAccessor;
 
-namespace Restaurants.Actions.Coomands.AddResturant
+namespace Restaurants.Actions.Commands.AddResturant
 {
     public class AddResturantCommandValidator : AbstractValidator<AddResturantCommand>
     {

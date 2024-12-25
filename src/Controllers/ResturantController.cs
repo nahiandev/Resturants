@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Actions.Coomands.AddResturant;
+using Restaurants.Actions.Commands.AddResturant;
+using Restaurants.Actions.Commands.DeleteResturant;
 using Restaurants.Actions.Queries.GetResturantById;
 using Restaurants.Actions.Queries.GetResturants;
-using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
 {
@@ -13,12 +13,10 @@ namespace Restaurants.Controllers
     // ModelState related errors are handled and exposed to consumer here
     public class ResturantController : ControllerBase
     {
-        private readonly IResturantService _service;
         private readonly IMediator _mediator;
 
-        public ResturantController(IResturantService service, IMediator mediator)
+        public ResturantController(IMediator mediator)
         {
-            _service = service;
             _mediator = mediator;
         }
 
@@ -60,11 +58,11 @@ namespace Restaurants.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteResturant([FromRoute] int id)
         {
-            var (success, name) = await _service.DeleteMappedResturantAsync(id);
+            var success = await _mediator.Send(new DeleteResturantCommand(id));
 
             if (!success) return NotFound($"No Resturant found associated with Id: {id}");
 
-            return Ok($"Resturant Name: {name} associated with Id: {id} was deleted.");
+            return Ok($"Resturant associated with Id: {id} was deleted.");
         }
     }
 }

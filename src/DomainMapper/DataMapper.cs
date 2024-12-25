@@ -1,4 +1,4 @@
-﻿using Restaurants.Actions.Coomands.AddResturant;
+﻿using Restaurants.Actions.Commands.AddResturant;
 using Restaurants.Actions.Queries.SharedDTO;
 using Restaurants.Domains;
 

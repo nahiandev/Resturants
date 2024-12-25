@@ -7,6 +7,6 @@ namespace Restaurants.Repository.Interfaces
         Task<List<Resturant>> GetResturantsAsync();
         Task<Resturant?> GetResturantByIdAsync(int id);
         Task<Resturant> AddResturantAsync(Resturant add_resturant);
-        Task<Resturant?> DeleteResturantAsync(int id);
+        Task<bool> DeleteResturantAsync(int id);
     }
 }

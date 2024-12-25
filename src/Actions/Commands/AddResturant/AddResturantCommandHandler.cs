@@ -2,7 +2,7 @@
 using Restaurants.DomainMapper;
 using Restaurants.Repository.Interfaces;
 
-namespace Restaurants.Actions.Coomands.AddResturant
+namespace Restaurants.Actions.Commands.AddResturant
 {
     public class AddResturantCommandHandler : IRequestHandler<AddResturantCommand, int>
     {

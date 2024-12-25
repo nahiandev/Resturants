@@ -25,17 +25,17 @@ namespace Restaurants.Repository.Implementations
             return add_resturant;
         }
 
-        public async Task<Resturant?> DeleteResturantAsync(int id)
+        public async Task<bool> DeleteResturantAsync(int id)
         {
             var resturant = _context.Resturants.FirstOrDefault(r => r.Id == id);
             
-            if (resturant is null) return await Task.FromResult<Resturant?>(null);
+            if (resturant is null) return false;
 
             _context.Resturants.Remove(resturant);
 
             await _context.SaveChangesAsync();
 
-            return resturant;
+            return true;
         }
 
         public async Task<Resturant?> GetResturantByIdAsync(int id)

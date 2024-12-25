@@ -1,12 +1,10 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Restaurants.Actions.Coomands.AddResturant;
+using Restaurants.Actions.Commands.AddResturant;
 using Restaurants.DataAccessor;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
-using Restaurants.Services.Implementations;
-using Restaurants.Services.Interfaces;
 using System.Reflection;
 
 
@@ -27,7 +25,6 @@ namespace Restaurants
             builder.Services.AddValidatorsFromAssemblyContaining<AddResturantCommandValidator>();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
-            builder.Services.AddScoped<IResturantService, ResturantService>();
 
             // Register MediatR and scan for handlers in the current assembly
             builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
