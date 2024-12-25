@@ -18,7 +18,8 @@ namespace Restaurants.DomainMapper
             Name = source.Name,
             Description = source.Description,
             Category = source.Category,
-            HasDelivery = source.HasDelivery
+            HasDelivery = source.HasDelivery,
+            Email = source.Email
         };
         
 

@@ -44,9 +44,11 @@ namespace Restaurants.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             
-            var (id, saved_resturant) = await _service.AddMappedResturantAsync(add_resturant_dto);
+            var (id, saved_resturant, exists) = await _service.AddMappedResturantAsync(add_resturant_dto);
 
-            if (saved_resturant is null) return BadRequest();
+            if (saved_resturant is null) return BadRequest("Recored not saved!");
+
+            if (exists) return Conflict("Duplicate email, use a unique one!");
 
             return CreatedAtAction(nameof(GetResturantById), new { id }, saved_resturant);
         }

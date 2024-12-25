@@ -16,13 +16,19 @@ namespace Restaurants.Repository.Implementations
             _context = context;
         }
 
-        public async Task<Resturant?> AddResturantAsync(Resturant add_resturant)
+        public async Task<(bool exists, Resturant? resturant)> AddResturantAsync(Resturant add_resturant)
         {
+            var existing_resturant = await _context.Resturants.FirstOrDefaultAsync(r => r.Email == add_resturant.Email);
+
+            var exists = existing_resturant is not null;
+
+            if (exists) return (exists, existing_resturant);
+            
             await _context.Resturants.AddAsync(add_resturant);
 
             await _context.SaveChangesAsync();
 
-            return add_resturant;
+            return (exists, add_resturant);
         }
 
         public async Task<Resturant?> DeleteResturantAsync(int id)

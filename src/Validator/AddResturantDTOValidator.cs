@@ -21,7 +21,8 @@ namespace Restaurants.Validator
                 .Must(value => value == true || value == false)
                 .WithMessage("Must be a boolean value.");
 
-            RuleFor(r => r.Email).NotEmpty().EmailAddress();
+            RuleFor(r => r.Email).NotEmpty()
+                .EmailAddress();
         }
     }
 }
