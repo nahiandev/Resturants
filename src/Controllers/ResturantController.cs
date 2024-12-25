@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Actions.Coomands.AddResturant;
-using Restaurants.Models.DTOs;
+using Restaurants.Actions.Queries.GetResturants;
 using Restaurants.Services.Interfaces;
 
 namespace Restaurants.Controllers
@@ -24,9 +24,9 @@ namespace Restaurants.Controllers
         [HttpGet]
         public async Task<IActionResult> GetResturants()
         {
-            var resturants = await _service.GetMappedResturantsAsync();
+            var resturants = await _mediator.Send(new GetResturantsQuery());
 
-            if (resturants.Count is 0) return NotFound("OOPS! This place is little empty.");
+            if (!resturants.Any()) return NotFound("OOPS! This place is little empty.");
 
             return Ok(resturants);
         }

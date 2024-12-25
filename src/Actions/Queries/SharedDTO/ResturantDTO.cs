@@ -1,4 +1,4 @@
-﻿namespace Restaurants.Models.DTOs
+﻿namespace Restaurants.Actions.Queries.SharedDTO
 {
     public class ResturantDTO
     {

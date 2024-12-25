@@ -1,7 +1,7 @@
-﻿using Restaurants.Models.DTOs;
-using Restaurants.Repository.Interfaces;
+﻿using Restaurants.Repository.Interfaces;
 using Restaurants.Services.Interfaces;
 using Restaurants.DomainMapper;
+using Restaurants.Actions.Queries.SharedDTO;
 
 namespace Restaurants.Services.Implementations
 {
@@ -23,15 +23,6 @@ namespace Restaurants.Services.Implementations
             if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
 
             return DataMapper.Instance.Mapper(resturant);
-        }
-
-        public async Task<List<ResturantDTO>> GetMappedResturantsAsync()
-        {
-            var resturants = await _repository.GetResturantsAsync();
-
-            if (resturants.Count is 0) return [];
-
-            return [..resturants.Select(DataMapper.Instance.Mapper)];
         }
 
         public async Task<(bool success, string? name)> DeleteMappedResturantAsync(int id)

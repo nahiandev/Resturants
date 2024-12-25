@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Restaurants.Actions.Coomands.AddResturant;
 using Restaurants.DataAccessor;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
@@ -23,7 +24,7 @@ namespace Restaurants
             builder.Services.AddControllers();
 
             builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddValidatorsFromAssemblyContaining<AddResturantDTOValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<AddResturantCommandValidator>();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
             builder.Services.AddScoped<IResturantService, ResturantService>();
