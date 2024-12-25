@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Restaurants.Coomands.AddResturant;
+using Restaurants.Actions.Coomands.AddResturant;
 using Restaurants.Models.DTOs;
 using Restaurants.Services.Interfaces;
 
@@ -50,9 +50,7 @@ namespace Restaurants.Controllers
 
             var id = await _mediator.Send(command);
 
-            // var (id, saved_resturant) = await _service.AddMappedResturantAsync(add_resturant_dto);
-
-            // if (saved_resturant is null) return BadRequest("Recored not saved!");
+            if (id is -1) return BadRequest();
 
             return CreatedAtAction(nameof(GetResturantById), new { id }, command);
         }

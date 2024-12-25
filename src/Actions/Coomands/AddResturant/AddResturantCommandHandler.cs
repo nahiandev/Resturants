@@ -2,7 +2,7 @@
 using Restaurants.DomainMapper;
 using Restaurants.Repository.Interfaces;
 
-namespace Restaurants.Coomands.AddResturant
+namespace Restaurants.Actions.Coomands.AddResturant
 {
     public class AddResturantCommandHandler : IRequestHandler<AddResturantCommand, int>
     {
@@ -20,7 +20,7 @@ namespace Restaurants.Coomands.AddResturant
                 var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
                 return saved_resturant.Id;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return -1;
             }

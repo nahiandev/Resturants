@@ -1,4 +1,4 @@
-﻿using Restaurants.Coomands.AddResturant;
+﻿using Restaurants.Actions.Coomands.AddResturant;
 using Restaurants.Models.Domains;
 using Restaurants.Models.DTOs;
 
