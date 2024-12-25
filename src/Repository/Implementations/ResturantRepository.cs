@@ -50,7 +50,7 @@ namespace Restaurants.Repository.Implementations
         public async Task<List<Resturant>> GetResturantsAsync()
         {
             var resturants = await _context.Resturants.ToListAsync();
-
+            
             if (resturants.Count == 0) return [];
             
             return resturants;

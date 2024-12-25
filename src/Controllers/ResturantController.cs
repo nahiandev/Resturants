@@ -9,8 +9,6 @@ namespace Restaurants.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    // ModelState related errors are handled and exposed to consumer here
     public class ResturantController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -23,19 +21,22 @@ namespace Restaurants.Controllers
         [HttpGet]
         public async Task<IActionResult> GetResturants()
         {
-            var resturants = await _mediator.Send(new GetResturantsQuery());
-
+            var query = new GetResturantsQuery();
+            
+            var resturants = await _mediator.Send(query);
+            
             if (!resturants.Any()) return NotFound("OOPS! This place is little empty.");
-
+            
             return Ok(resturants);
         }
 
         [HttpGet]
         [Route("{id:int}")]
-
         public async Task<IActionResult> GetResturantById([FromRoute] int id)
         {
-            var resturant = await _mediator.Send(new GetResturantByIdQuery(id));
+            var query = new GetResturantByIdQuery(id);
+
+            var resturant = await _mediator.Send(query);
 
             if (resturant is null) return NotFound($"No Resturant found associated with Id: {id}");
 
@@ -58,7 +59,9 @@ namespace Restaurants.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteResturant([FromRoute] int id)
         {
-            var success = await _mediator.Send(new DeleteResturantCommand(id));
+            var command = new DeleteResturantCommand(id);
+
+            var success = await _mediator.Send(command);
 
             if (!success) return BadRequest($"No Resturant found associated with Id: {id}");
 
