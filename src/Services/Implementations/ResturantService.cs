@@ -16,14 +16,6 @@ namespace Restaurants.Services.Implementations
         {
             _repository = repository;
         }
-        public async Task<ResturantDTO?> GetMappedResturantByIdAsync(int id)
-        {
-            var resturant = await _repository.GetResturantByIdAsync(id);
-
-            if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
-
-            return DataMapper.Instance.Mapper(resturant);
-        }
 
         public async Task<(bool success, string? name)> DeleteMappedResturantAsync(int id)
         {

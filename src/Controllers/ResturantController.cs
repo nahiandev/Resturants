@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Actions.Coomands.AddResturant;
+using Restaurants.Actions.Queries.GetResturantById;
 using Restaurants.Actions.Queries.GetResturants;
 using Restaurants.Services.Interfaces;
 
@@ -36,7 +37,7 @@ namespace Restaurants.Controllers
 
         public async Task<IActionResult> GetResturantById([FromRoute] int id)
         {
-            var resturant = await _service.GetMappedResturantByIdAsync(id);
+            var resturant = await _mediator.Send(new GetResturantByIdQuery { Id = id });
 
             if (resturant is null) return NotFound($"No Resturant found associated with Id: {id}");
 
