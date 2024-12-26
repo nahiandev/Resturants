@@ -1,7 +1,7 @@
 ﻿using Restaurants.Actions.Commands.AddResturant;
 using Restaurants.Actions.Commands.UpdateResturant;
-using Restaurants.Actions.Queries.SharedDTO;
-using Restaurants.Domains;
+using Restaurants.Domains.DTOs;
+using Restaurants.Domains.Models;
 
 namespace Restaurants.DomainMapper
 {

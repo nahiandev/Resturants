@@ -1,6 +1,6 @@
-﻿namespace Restaurants.Actions.Commands.UpdateResturant
+﻿namespace Restaurants.Domains.DTOs
 {
-    public class UpdateResturantDTO
+    public class ResturantDTO
     {
         public string Name { get; set; }
         public string Description { get; set; }
