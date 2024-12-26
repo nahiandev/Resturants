@@ -8,13 +8,19 @@ namespace Restaurants.Actions.Commands.UpdateResturant
     {
         private readonly IResturantRepository _repository;
 
-        public UpdateResturantCommandHandler(IResturantRepository repository)
+        private readonly ILogger<UpdateResturantCommandHandler> _logger;
+
+        public UpdateResturantCommandHandler(IResturantRepository repository, ILogger<UpdateResturantCommandHandler> logger)
         {
             _repository = repository;
+
+            _logger = logger;
         }
 
         public async Task<bool> Handle(UpdateResturantCommand request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Updating Resturant with {@UpdateResturant}", request);
+
             try
             {
                 var id = request.Id;
@@ -27,7 +33,8 @@ namespace Restaurants.Actions.Commands.UpdateResturant
             }
             catch (Exception ex)
             {
-                // Log the exception
+                _logger.LogInformation("Error updating Resturant with {@UpdateResturant}", ex.Message);
+
                 throw;
             }
         }

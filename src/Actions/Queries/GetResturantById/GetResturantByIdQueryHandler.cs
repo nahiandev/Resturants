@@ -9,12 +9,18 @@ namespace Restaurants.Actions.Queries.GetResturantById
     {
         private readonly IResturantRepository _repository;
 
-        public GetResturantByIdQueryHandler(IResturantRepository repository)
+        private readonly ILogger<GetResturantByIdQueryHandler> _logger;
+
+        public GetResturantByIdQueryHandler(IResturantRepository repository, ILogger<GetResturantByIdQueryHandler> logger)
         {
             _repository = repository;
+
+            _logger = logger;
         }
         public async Task<ResturantDTO?> Handle(GetResturantByIdQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Getting Resturant with {@GetResturantById}", request);
+
             try
             {
                 var resturant = await _repository.GetResturantByIdAsync(request.Id);
@@ -25,7 +31,8 @@ namespace Restaurants.Actions.Queries.GetResturantById
             }
             catch (Exception ex)
             {
-                // Log exception
+                _logger.LogInformation($"Error getting Resturant with id : {request.Id}" + " {@GetResturantById}", ex.Message);
+
                 throw;
             }
         }

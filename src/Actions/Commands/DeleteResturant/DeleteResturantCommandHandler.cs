@@ -7,13 +7,19 @@ namespace Restaurants.Actions.Commands.DeleteResturant
     {
         private readonly IResturantRepository _repository;
 
-        public DeleteResturantCommandHandler(IResturantRepository repository)
+        private readonly ILogger<DeleteResturantCommandHandler> _logger;
+
+        public DeleteResturantCommandHandler(IResturantRepository repository, ILogger<DeleteResturantCommandHandler> logger)
         {
             _repository = repository;
+
+            _logger = logger;
         }
 
         public async Task<bool> Handle(DeleteResturantCommand request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Deleting Resturant with {@DeleteResturant}", request);
+
             try
             {
                 var is_deleted = await _repository.DeleteResturantAsync(request.Id);
@@ -22,7 +28,8 @@ namespace Restaurants.Actions.Commands.DeleteResturant
             }
             catch (Exception ex)
             {
-                // Log exception
+                _logger.LogInformation($"Error deleting Resturant with id : {request.Id}" + " {@DeleteResturant}", ex.Message);
+
                 throw;
             }
         }

@@ -34,8 +34,19 @@ namespace Restaurants.Actions.Commands.AddResturant
             RuleFor(r => r.Email)
                 .NotEmpty()
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
-                .Must(e => !_context.Resturants.Any(r => r.Email == e))
+                .Must(BeUniqueEmail)
                 .WithMessage("Email address must be unique.");
+        }
+
+        private bool BeUniqueEmail(UpdateResturantCommand command, string email)
+        {
+            var existing = _context.Resturants.FirstOrDefault(r => r.Id == command.Id);
+
+            if (existing != null && existing.Email == email) return true;
+
+            var email_exists = _context.Resturants.Any(r => r.Email == email && r.Id != command.Id);
+            
+            return !email_exists;
         }
     }
 }

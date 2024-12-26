@@ -9,12 +9,17 @@ namespace Restaurants.Actions.Queries.GetResturants
     {
         private readonly IResturantRepository _repository;
 
-        public GetResturantsQueryHandler(IResturantRepository repository)
+        private readonly ILogger<GetResturantsQueryHandler> _logger;
+
+        public GetResturantsQueryHandler(IResturantRepository repository, ILogger<GetResturantsQueryHandler> logger)
         {
             _repository = repository;
+
+            _logger = logger;
         }
         public async Task<IEnumerable<ResturantDTO>> Handle(GetResturantsQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Getting all Resturants with {@GetResturants}", request);
             try
             {
                 var resturants = await _repository.GetResturantsAsync();
@@ -25,7 +30,8 @@ namespace Restaurants.Actions.Queries.GetResturants
             }
             catch (Exception ex)
             {
-                // Log exception
+                _logger.LogInformation("Error getting all Resturants with {@GetResturants}", ex.Message);
+
                 throw;
             }
         }
