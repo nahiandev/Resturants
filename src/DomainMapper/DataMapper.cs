@@ -1,4 +1,5 @@
 ﻿using Restaurants.Actions.Commands.AddResturant;
+using Restaurants.Actions.Commands.UpdateResturant;
 using Restaurants.Actions.Queries.SharedDTO;
 using Restaurants.Domains;
 
@@ -31,6 +32,15 @@ namespace Restaurants.DomainMapper
             Category = add_resturant_command.Category,
             PhoneNumber = add_resturant_command.PhoneNumber,
             Email = add_resturant_command.Email
+        };
+
+        public Resturant Mapper(UpdateResturantCommand update_resturant) => new()
+        {
+            Name = update_resturant.Name,
+            Description = update_resturant.Description,
+            Category = update_resturant.Category,
+            PhoneNumber = update_resturant.PhoneNumber,
+            Email = update_resturant.Email
         };
     }
 }

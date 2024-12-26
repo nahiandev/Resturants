@@ -55,5 +55,36 @@ namespace Restaurants.Repository.Implementations
             
             return resturants;
         }
+
+        public async Task<bool> UpdateResturantAsync(int id, Resturant update_resturant)
+        {
+            var existing_resturant = await _context.Resturants.FirstOrDefaultAsync(r => r.Id == id);
+
+            if (existing_resturant is null) return false;
+
+            bool are_same = update_resturant.Equals(existing_resturant);
+
+            if (are_same) return false;
+
+            //_context.Entry(existing_resturant).CurrentValues.SetValues(update_resturant);
+
+            //_context.Entry(existing_resturant).State = EntityState.Modified;
+
+            existing_resturant.Name = update_resturant.Name;
+
+            existing_resturant.Description = update_resturant.Description;
+
+            existing_resturant.Category = update_resturant.Category;
+
+            existing_resturant.HasDelivery = update_resturant.HasDelivery;
+
+            existing_resturant.PhoneNumber = update_resturant.PhoneNumber;
+
+            existing_resturant.Email = update_resturant.Email;
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

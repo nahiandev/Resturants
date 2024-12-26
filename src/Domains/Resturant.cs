@@ -10,5 +10,28 @@
 
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
+
+
+
+        public override bool Equals(object to_be_compared)
+        {
+            if (to_be_compared is Resturant another_resturant)
+            {
+                return Id == another_resturant.Id 
+                    && Name == another_resturant.Name 
+                    && Description == another_resturant.Description
+                    && Category == another_resturant.Category
+                    && HasDelivery == another_resturant.HasDelivery
+                    && PhoneNumber == another_resturant.PhoneNumber
+                    && Email == another_resturant.Email;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, Description, Category, HasDelivery, PhoneNumber, Email);
+        }
     }
 }

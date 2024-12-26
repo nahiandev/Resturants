@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Actions.Commands.AddResturant;
 using Restaurants.Actions.Commands.DeleteResturant;
+using Restaurants.Actions.Commands.UpdateResturant;
 using Restaurants.Actions.Queries.GetResturantById;
 using Restaurants.Actions.Queries.GetResturants;
 
@@ -66,6 +67,21 @@ namespace Restaurants.Controllers
             if (!success) return BadRequest($"No Resturant found associated with Id: {id}");
 
             return Ok($"Resturant associated with Id: {id} was deleted.");
+        }
+
+        [HttpPatch]
+        [Route("{id:int}")]
+        public async Task<IActionResult> UpdateResturant([FromRoute] int id, [FromBody] UpdateResturantCommand command)
+        {
+            if (id != command.Id) return BadRequest("ID mismatch.");
+            
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            
+            var result = await _mediator.Send(command);
+
+            if (!result) return StatusCode(304, "Failed to update Resturant.");
+            
+            return Ok();
         }
     }
 }
