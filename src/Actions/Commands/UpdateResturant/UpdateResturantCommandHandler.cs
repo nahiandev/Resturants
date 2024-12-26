@@ -25,7 +25,7 @@ namespace Restaurants.Actions.Commands.UpdateResturant
             {
                 var id = request.Id;
 
-                var domain_resturant = DataMapper.Instance.Mapper(request.Properties);
+                var domain_resturant = DataMapper.Instance.Mapper(request);
 
                 var is_updated = await _repository.UpdateResturantAsync(id, domain_resturant);
 

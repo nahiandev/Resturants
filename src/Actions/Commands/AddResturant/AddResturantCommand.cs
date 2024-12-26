@@ -1,15 +1,14 @@
 ﻿using MediatR;
-using Restaurants.Domains.DTOs;
 
 namespace Restaurants.Actions.Commands.AddResturant
 {
     public class AddResturantCommand : IRequest<int>
     {
-        public AddResturantDTO Properties { get; set; }
-
-        public AddResturantCommand(AddResturantDTO properties)
-        {
-            Properties = properties;
-        }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public bool HasDelivery { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Email { get; set; }
     }
 }

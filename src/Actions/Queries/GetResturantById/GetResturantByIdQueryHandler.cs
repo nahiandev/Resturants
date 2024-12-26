@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Restaurants.Actions.DTOs;
 using Restaurants.DomainMapper;
-using Restaurants.Domains.DTOs;
 using Restaurants.Repository.Interfaces;
 
 namespace Restaurants.Actions.Queries.GetResturantById

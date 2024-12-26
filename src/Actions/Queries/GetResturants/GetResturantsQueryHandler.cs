@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Restaurants.Actions.DTOs;
 using Restaurants.DomainMapper;
-using Restaurants.Domains.DTOs;
 using Restaurants.Repository.Interfaces;
 
 namespace Restaurants.Actions.Queries.GetResturants
@@ -20,6 +20,7 @@ namespace Restaurants.Actions.Queries.GetResturants
         public async Task<IEnumerable<ResturantDTO>> Handle(GetResturantsQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Getting all Resturants with {@GetResturants}", request);
+
             try
             {
                 var resturants = await _repository.GetResturantsAsync();
