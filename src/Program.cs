@@ -34,15 +34,16 @@ namespace Restaurants
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var log_file = builder.Configuration.GetSection("Logging:File").Value;
+            // var log_file = builder.Configuration.GetSection("Logging:File").Value;
 
             builder.Host.UseSerilog((context, configuration) =>
             {
                 configuration
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
-                // .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}")
-                .WriteTo.File(log_file!, rollingInterval: RollingInterval.Hour, outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}");
+                .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}")
+                //.WriteTo.File(@"Logs\API-Log-.log", rollingInterval: RollingInterval.Hour, outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}")
+                .WriteTo.File(@"Logs\API-Log-.log", rollingInterval: RollingInterval.Hour, rollOnFileSizeLimit: true);
             });
 
             var app = builder.Build();
