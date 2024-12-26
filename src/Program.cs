@@ -7,6 +7,7 @@ using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
 using Serilog;
 using Serilog.Events;
+using Serilog.Formatting.Compact;
 using System.Reflection;
 
 
@@ -33,8 +34,6 @@ namespace Restaurants
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            // var log_file = builder.Configuration.GetSection("Logging:File").Value;
 
             builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
