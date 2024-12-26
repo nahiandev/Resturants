@@ -25,7 +25,7 @@ namespace Restaurants.DomainMapper
             Email = source.Email
         };
         
-        public Resturant Mapper(AddResturantCommand add_resturant_command) => new()
+        public Resturant Mapper(AddResturantDTO add_resturant_command) => new()
         {
             Name = add_resturant_command.Name,
             Description = add_resturant_command.Description,
@@ -34,7 +34,7 @@ namespace Restaurants.DomainMapper
             Email = add_resturant_command.Email
         };
 
-        public Resturant Mapper(UpdateResturantCommand update_resturant) => new()
+        public Resturant Mapper(UpdateResturantDTO update_resturant) => new()
         {
             Name = update_resturant.Name,
             Description = update_resturant.Description,

@@ -20,7 +20,7 @@ namespace Restaurants.Actions.Commands.AddResturant
         {
             _logger.LogInformation("Adding a new Resturant with {@AddResturant}", request);
 
-            var domain_resturant = DataMapper.Instance.Mapper(request);
+            var domain_resturant = DataMapper.Instance.Mapper(request.Properties);
 
             try
             {

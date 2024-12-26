@@ -13,25 +13,25 @@ namespace Restaurants.Actions.Commands.AddResturant
         {
             _context = context;
 
-            RuleFor(r => r.Name)
+            RuleFor(r => r.Properties.Name)
                 .NotEmpty()
                 .MinimumLength(3)
                 .MaximumLength(50);
 
-            RuleFor(r => r.Description)
+            RuleFor(r => r.Properties.Description)
                 .NotEmpty()
                 .MaximumLength(300);
 
-            RuleFor(r => r.Category)
+            RuleFor(r => r.Properties.Category)
                 .NotEmpty()
                 .MaximumLength(10);
 
-            RuleFor(r => r.HasDelivery)
+            RuleFor(r => r.Properties.HasDelivery)
                 .NotNull()
                 .Must(value => value == true || value == false)
                 .WithMessage("Must be a boolean value.");
 
-            RuleFor(r => r.Email)
+            RuleFor(r => r.Properties.Email)
                 .NotEmpty()
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
                 .Must(BeUniqueEmail)
@@ -45,7 +45,7 @@ namespace Restaurants.Actions.Commands.AddResturant
             if (existing != null && existing.Email == email) return true;
 
             var email_exists = _context.Resturants.Any(r => r.Email == email && r.Id != command.Id);
-            
+
             return !email_exists;
         }
     }

@@ -41,8 +41,8 @@ namespace Restaurants
                 configuration
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
-                .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}")
-                .WriteTo.File(log_file!, rollingInterval: RollingInterval.Day, outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}");
+                // .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}")
+                .WriteTo.File(log_file!, rollingInterval: RollingInterval.Hour, outputTemplate: "[{Timestamp:dd-MM-yyyy HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message}{NewLine}");
             });
 
             var app = builder.Build();
