@@ -79,7 +79,7 @@ namespace Restaurants.Controllers
             
             var result = await _mediator.Send(command);
 
-            if (!result) return StatusCode(304, "Failed to update Resturant.");
+            if (!result) return StatusCode(304, "Not modified.");
             
             return Ok();
         }

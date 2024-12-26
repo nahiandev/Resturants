@@ -17,8 +17,7 @@
         {
             if (to_be_compared is Resturant another_resturant)
             {
-                return Id == another_resturant.Id 
-                    && Name == another_resturant.Name 
+                return Name == another_resturant.Name 
                     && Description == another_resturant.Description
                     && Category == another_resturant.Category
                     && HasDelivery == another_resturant.HasDelivery

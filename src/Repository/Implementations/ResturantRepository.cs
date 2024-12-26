@@ -66,9 +66,6 @@ namespace Restaurants.Repository.Implementations
 
             if (are_same) return false;
 
-            //_context.Entry(existing_resturant).CurrentValues.SetValues(update_resturant);
-
-            //_context.Entry(existing_resturant).State = EntityState.Modified;
 
             existing_resturant.Name = update_resturant.Name;
 
@@ -82,8 +79,12 @@ namespace Restaurants.Repository.Implementations
 
             existing_resturant.Email = update_resturant.Email;
 
-            await _context.SaveChangesAsync();
 
+
+            _context.Resturants.Update(existing_resturant);
+
+            await _context.SaveChangesAsync();
+            
             return true;
         }
     }
