@@ -11,7 +11,7 @@ using Restaurants.DataAccessor;
 namespace Restaurants.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20241229093656_GenerateDatabse")]
+    [Migration("20241229095139_GenerateDatabse")]
     partial class GenerateDatabse
     {
         /// <inheritdoc />

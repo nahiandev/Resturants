@@ -20,7 +20,7 @@ namespace Restaurants.Middlewares
                 _logger.LogError(ex, ex.Message);
 
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsync("Something went wrong.");
+                await context.Response.WriteAsync("It's not you, its us. We're working hard to get things back to normal.");
             }
         }
     }
