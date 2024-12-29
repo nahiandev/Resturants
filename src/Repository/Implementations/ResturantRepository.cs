@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurants.DataAccessor;
-using Restaurants.Domains;
+using Restaurants.Domains.Models;
 using Restaurants.Repository.Interfaces;
 
 namespace Restaurants.Repository.Implementations

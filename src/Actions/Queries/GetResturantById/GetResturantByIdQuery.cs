@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Restaurants.Actions.DTOs;
+using Restaurants.Domains.DTOs;
 
 namespace Restaurants.Actions.Queries.GetResturantById
 {

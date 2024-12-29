@@ -1,4 +1,4 @@
-﻿namespace Restaurants.Domains
+﻿namespace Restaurants.Domains.Models
 {
     public class Resturant
     {

@@ -3,11 +3,11 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Restaurants.Actions.Commands.AddResturant;
 using Restaurants.DataAccessor;
+using Restaurants.Middlewares;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
+using Restaurants.Seeders;
 using Serilog;
-using Serilog.Events;
-using Serilog.Formatting.Compact;
 using System.Reflection;
 
 
@@ -15,7 +15,7 @@ namespace Restaurants
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +28,8 @@ namespace Restaurants
             builder.Services.AddValidatorsFromAssemblyContaining<AddResturantCommandValidator>();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
+            builder.Services.AddScoped<ErrorHandler>();
+            builder.Services.AddScoped<IResturantSeeder, ResturantSeeder>();
 
             // Register MediatR and scan for handlers in the current assembly
             builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
@@ -38,6 +40,11 @@ namespace Restaurants
             builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
             var app = builder.Build();
+
+            var scope = app.Services.CreateScope();
+            var seeder = scope.ServiceProvider.GetRequiredService<IResturantSeeder>();
+
+            await seeder.SeedAsync();
 
             if (app.Environment.IsDevelopment())
             {
