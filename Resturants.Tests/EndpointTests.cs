@@ -1,6 +1,6 @@
-namespace Resturant.Tests
+namespace Resturants.Tests
 {
-    public class EndpointTest
+    public class EndpointTests
     {
         [SetUp]
         public void Setup()
@@ -8,8 +8,9 @@ namespace Resturant.Tests
         }
 
         [Test]
-        public async Task TestGetAll()
+        public void Test1()
         {
+            Assert.Pass();
         }
     }
 }
