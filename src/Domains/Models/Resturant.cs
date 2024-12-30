@@ -15,6 +15,8 @@
 
         public bool Equals(Resturant? to_be_compared)
         {
+            if (to_be_compared == null) return false;
+
             if (to_be_compared is Resturant another_resturant)
             {
                 return Name == another_resturant.Name
