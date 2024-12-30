@@ -1,5 +1,11 @@
-@Restaurants_HostAddress = https://localhost:44369
+@Restaurants_HostAddress = https://localhost:7244
+
 
 GET {{Restaurants_HostAddress}}/api/resturant
+
+###
+
+@id=1
+GET {{Restaurants_HostAddress}}/api/Resturant/{{id}}
 
 ###

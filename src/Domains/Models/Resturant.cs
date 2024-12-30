@@ -13,7 +13,7 @@
 
 
 
-        public override bool Equals(object to_be_compared)
+        public bool Equals(Resturant? to_be_compared)
         {
             if (to_be_compared is Resturant another_resturant)
             {
@@ -26,11 +26,6 @@
             }
 
             return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Name, Description, Category, HasDelivery, PhoneNumber, Email);
         }
     }
 }
