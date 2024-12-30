@@ -32,7 +32,7 @@ namespace Restaurants
             builder.Services.AddScoped<IResturantSeeder, ResturantSeeder>();
 
             // Register MediatR and scan for handlers in the current assembly
-            builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
