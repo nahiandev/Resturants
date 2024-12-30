@@ -11,8 +11,6 @@
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
 
-
-
         public bool Equals(Resturant? to_be_compared)
         {
             if (to_be_compared == null) return false;
