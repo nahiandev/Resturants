@@ -5,7 +5,7 @@ using Resturants.Actions.Commands.AddDish;
 
 namespace Resturants.Controllers
 {
-    [Route("endpoints/[controller]")]
+    [Route("endpoints/resturants/{resturant_id}/[controller]")]
     [ApiController]
     public class DishesController : ControllerBase
     {
@@ -34,17 +34,18 @@ namespace Resturants.Controllers
         
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> UpdateDish(int id, Dish dish)
+        public async Task<IActionResult> UpdateDish()
         {
             throw new NotImplementedException();
         }
 
         
         [HttpPost]
-        public async Task<ActionResult<Dish>> AddtDish(int resturant_id, AddDishCommand command)
+        public async Task<ActionResult<Dish>> AddtDish([FromRoute] int resturant_id, AddDishCommand command)
         {
-            var result = await _mediator.Send(command);
-            throw new NotImplementedException();
+            await _mediator.Send(command);
+
+            return Created();
         }
 
        
