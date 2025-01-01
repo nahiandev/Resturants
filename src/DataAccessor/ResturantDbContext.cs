@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurants.Domain.Entities;
 using Restaurants.Domains.Models;
 
 namespace Restaurants.DataAccessor

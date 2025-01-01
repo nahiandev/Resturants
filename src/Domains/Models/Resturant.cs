@@ -1,6 +1,4 @@
-﻿using Restaurants.Domain.Entities;
-
-namespace Restaurants.Domains.Models
+﻿namespace Restaurants.Domains.Models
 {
     public class Resturant
     {
