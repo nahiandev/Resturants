@@ -41,7 +41,7 @@ namespace Resturants.Controllers
 
         
         [HttpPost]
-        public async Task<ActionResult<Dish>> AddtDish([FromRoute] int resturant_id, AddDishCommand command)
+        public async Task<ActionResult<Dish>> AddDish([FromRoute] int resturant_id, AddDishCommand command)
         {
             await _mediator.Send(command);
 
