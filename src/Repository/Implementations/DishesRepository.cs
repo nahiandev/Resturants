@@ -1,10 +1,17 @@
-﻿using Restaurants.Domains.Models;
+﻿using Restaurants.DataAccessor;
+using Restaurants.Domains.Models;
 using Resturants.Repository.Interfaces;
 
 namespace Resturants.Repository.Implementations
 {
     public class DishesRepository : IDishesRepository
     {
+        private readonly ResturantDbContext _context;
+
+        public DishesRepository(ResturantDbContext context)
+        {
+            _context = context;
+        }
         public Task<Dish> AddDishAsync(Dish add_dish)
         {
             throw new NotImplementedException();

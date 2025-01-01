@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Restaurants.DataAccessor;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Restaurants.Domains.Models;
+using Resturants.Actions.Commands.AddDish;
 
 namespace Resturants.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("endpoints/[controller]")]
     [ApiController]
     public class DishesController : ControllerBase
     {
-        private readonly ResturantDbContext _context;
+        private readonly IMediator _mediator;
 
-        public DishesController(ResturantDbContext context)
+        public DishesController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         
@@ -40,8 +41,9 @@ namespace Resturants.Controllers
 
         
         [HttpPost]
-        public async Task<ActionResult<Dish>> PostDish(Dish dish)
+        public async Task<ActionResult<Dish>> AddtDish(int resturant_id, AddDishCommand command)
         {
+            var result = await _mediator.Send(command);
             throw new NotImplementedException();
         }
 

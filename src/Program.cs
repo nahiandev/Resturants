@@ -7,6 +7,8 @@ using Restaurants.Middlewares;
 using Restaurants.Repository.Implementations;
 using Restaurants.Repository.Interfaces;
 using Restaurants.Seeders;
+using Resturants.Repository.Implementations;
+using Resturants.Repository.Interfaces;
 using Serilog;
 using System.Reflection;
 
@@ -21,13 +23,15 @@ namespace Restaurants
 
             var connectionString = builder.Configuration.GetConnectionString("ResturantConnection");
 
-            builder.Services.AddDbContext<ResturantDbContext>(db => db.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<ResturantDbContext>(DATABASE => DATABASE.UseSqlServer(connectionString));
             builder.Services.AddControllers();
 
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<AddResturantCommandValidator>();
 
             builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
+            builder.Services.AddScoped<IDishesRepository, DishesRepository>();
+
             builder.Services.AddScoped<ErrorHandler>();
             builder.Services.AddScoped<IResturantSeeder, ResturantSeeder>();
 
