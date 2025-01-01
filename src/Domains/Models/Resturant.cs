@@ -1,4 +1,6 @@
-﻿namespace Restaurants.Domains.Models
+﻿using Restaurants.Domain.Entities;
+
+namespace Restaurants.Domains.Models
 {
     public class Resturant
     {
@@ -10,6 +12,9 @@
 
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
+
+        public Address? Address { get; set; }
+        public List<Dish> Dishes { get; set; } = new();
 
         public bool Equals(Resturant? to_be_compared)
         {
