@@ -12,33 +12,13 @@ namespace Resturants.Repository.Implementations
         {
             _context = context;
         }
-        public async Task<Dish> AddDishAsync(Dish add_dish, CancellationToken cancellation_token)
+        public async Task<int> AddDishAsync(Dish add_dish, CancellationToken cancellation_token)
         {
             _context.Dishes.Add(add_dish);
 
             await _context.SaveChangesAsync();
 
-            return add_dish;
-        }
-
-        public Task<bool> DeleteDishAsync(int id, CancellationToken cancellation_token)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Dish?> GetDishByIdAsync(int id, CancellationToken cancellation_token)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Dish>?> GetDishesAsync(CancellationToken cancellation_token)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateDishAsync(int id, Dish update_dish, CancellationToken cancellation_token)
-        {
-            throw new NotImplementedException();
+            return add_dish.Id;
         }
     }
 }

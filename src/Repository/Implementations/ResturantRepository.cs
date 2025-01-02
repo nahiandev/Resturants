@@ -79,8 +79,6 @@ namespace Restaurants.Repository.Implementations
 
             existing_resturant.Email = update_resturant.Email;
 
-
-
             _context.Resturants.Update(existing_resturant);
 
             await _context.SaveChangesAsync();

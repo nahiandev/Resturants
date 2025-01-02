@@ -14,7 +14,7 @@ namespace Restaurants.Actions.Commands.AddResturant
         }
         public async Task<int> Handle(AddResturantCommand request, CancellationToken cancellationToken)
         {
-            var domain_resturant = DataMapper.Instance.Mapper(request);
+            var domain_resturant = DataMapper.Instance.Map(request);
 
                 var saved_resturant = await _repository.AddResturantAsync(domain_resturant!);
                

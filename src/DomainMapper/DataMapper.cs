@@ -2,6 +2,8 @@
 using Restaurants.Actions.Commands.UpdateResturant;
 using Restaurants.Domains.DTOs;
 using Restaurants.Domains.Models;
+using Resturants.Actions.Commands.AddDish;
+using Resturants.Domains.DTOs;
 
 namespace Restaurants.DomainMapper
 {
@@ -15,7 +17,7 @@ namespace Restaurants.DomainMapper
 
         public static DataMapper Instance => _instance;
 
-        public ResturantDTO Mapper(Resturant source) => new()
+        public ResturantDTO Map(Resturant source) => new()
         {
             Name = source.Name,
             Description = source.Description,
@@ -25,7 +27,7 @@ namespace Restaurants.DomainMapper
             Email = source.Email
         };
         
-        public Resturant Mapper(AddResturantCommand add_resturant_command) => new()
+        public Resturant Map(AddResturantCommand add_resturant_command) => new()
         {
             Name = add_resturant_command.Name,
             Description = add_resturant_command.Description,
@@ -34,7 +36,7 @@ namespace Restaurants.DomainMapper
             Email = add_resturant_command.Email
         };
         
-        public Resturant Mapper(AddResturantDTO add_resturant_dto) => new()
+        public Resturant Map(AddResturantDTO add_resturant_dto) => new()
         {
             Name = add_resturant_dto.Name,
             Description = add_resturant_dto.Description,
@@ -43,13 +45,21 @@ namespace Restaurants.DomainMapper
             Email = add_resturant_dto.Email
         };
 
-        public Resturant Mapper(UpdateResturantCommand update_resturant) => new()
+        public Resturant Map(UpdateResturantCommand update_resturant) => new()
         {
             Name = update_resturant.Name,
             Description = update_resturant.Description,
             Category = update_resturant.Category,
             PhoneNumber = update_resturant.PhoneNumber,
             Email = update_resturant.Email
+        };
+
+        public Dish Map(AddDishDTO command) => new()
+        {
+            Name = command.Name,
+            Description = command.Description,
+            Price = command.Price,
+            KiloCalories = command.KiloCalories
         };
     }
 }

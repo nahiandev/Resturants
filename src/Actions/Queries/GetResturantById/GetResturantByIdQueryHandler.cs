@@ -19,7 +19,7 @@ namespace Restaurants.Actions.Queries.GetResturantById
 
                 if (resturant is null) return await Task.FromResult<ResturantDTO?>(null);
 
-                return DataMapper.Instance.Mapper(resturant);
+                return DataMapper.Instance.Map(resturant);
         }
     }
 }

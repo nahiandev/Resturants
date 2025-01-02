@@ -132,7 +132,7 @@ namespace Restaurants.Seeders
             //    converted_domain_resturants.Add(DataMapper.Instance.Mapper(resturant));
             //}
 
-            dto_resturants.ForEach(r => converted_domain_resturants.Add(DataMapper.Instance.Mapper(r)));
+            dto_resturants.ForEach(r => converted_domain_resturants.Add(DataMapper.Instance.Map(r)));
 
             return converted_domain_resturants;
         }

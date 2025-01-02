@@ -50,8 +50,8 @@ namespace Restaurants
 
             await seeder.SeedAsync();
 
-            app.UseMiddleware<ErrorHandler>();
-            app.UseSerilogRequestLogging();
+          //  app.UseMiddleware<ErrorHandler>();
+        //    app.UseSerilogRequestLogging();
 
             if (app.Environment.IsDevelopment())
             {

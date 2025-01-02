@@ -1,8 +1,6 @@
-﻿using MediatR;
-
-namespace Resturants.Actions.Commands.AddDish
+﻿namespace Resturants.Domains.DTOs
 {
-    public class AddDishCommand : IRequest
+    public class AddDishDTO
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

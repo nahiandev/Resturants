@@ -19,7 +19,7 @@ namespace Restaurants.Actions.Queries.GetResturants
 
             if (resturants.Count is 0) return [];
 
-            return [.. resturants.Select(DataMapper.Instance.Mapper)];
+            return [.. resturants.Select(DataMapper.Instance.Map)];
         }
     }
 }
