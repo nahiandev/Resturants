@@ -12,21 +12,20 @@ namespace Restaurants.DataAccessor
         public DbSet<Resturant> Resturants { get; init; }
         internal DbSet<Dish> Dishes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder options_builder)
         {
-            base.OnConfiguring(optionsBuilder);
+            base.OnConfiguring(options_builder);
 
-            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore());
+            options_builder.ConfigureWarnings(warnings => warnings.Ignore());
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder model_builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(model_builder);
 
-            modelBuilder.Entity<Resturant>()
-                .OwnsOne(r => r.Address);
+            model_builder.Entity<Resturant>().OwnsOne(r => r.Address);
 
-            modelBuilder.Entity<Resturant>()
+            model_builder.Entity<Resturant>()
                 .HasMany(r => r.Dishes)
                 .WithOne()
                 .HasForeignKey(d => d.RestaurantId);
