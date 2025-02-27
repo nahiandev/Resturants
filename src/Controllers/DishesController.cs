@@ -13,12 +13,12 @@ namespace Resturants.Controllers
     [ApiController]
     public class DishesController : ControllerBase
     {
-        
+
         private readonly IDishesRepository _repository;
 
         public DishesController(IDishesRepository repository)
         {
-          
+
             this._repository = repository;
         }
 
@@ -26,15 +26,14 @@ namespace Resturants.Controllers
         public async Task<ActionResult<Dish>> AddDish([FromRoute] int resturant_id, AddDishDTO dish_entry)
         {
             var domain_dish = DataMapper.Instance.Map(dish_entry);
-            
-            var saved = await _repository.AddDishAsync(domain_dish, CancellationToken.None);
 
-            
+            var saved = await _repository.AddDishAsync(domain_dish, CancellationToken.None);
 
             return Ok(saved);
         }
 
-       
+        // write Task<IActionResult> DeleteDish method here
+
 
     }
 }
